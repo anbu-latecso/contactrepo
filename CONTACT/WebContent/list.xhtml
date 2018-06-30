@@ -1,0 +1,57 @@
+<!-- test note
+ -->
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>List view</title>
+</h:head>
+<h:body>
+	<h:form>
+		<h3>Contact details</h3>
+
+		<h:dataTable value="#{user.list()}" var="ls">
+			<h:column>
+				<f:facet name="header">Id</f:facet>
+				<h:outputText value="#{ls.contact_id}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Name</f:facet>
+				<h:outputText value="#{ls.name}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Company</f:facet>
+				<h:outputText value="#{ls.company}" />,
+					<f:facet name="header">Job_Title</f:facet>
+				<h:outputText value="#{ls.job_title}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Action</f:facet>
+				<h:commandLink value="Delete" action="#{user.remove(ls.contact_id)}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Action</f:facet>
+				<h:commandButton value="Edit" action="#{user.editContacts()}">
+					<f:param name="con" value="#{ls.contact_id}" />
+					<f:param name="name" value="#{ls.name}" />
+					<f:param name="p_last" value="#{ls.phonetic_last}" />
+					<f:param name="p_first" value="#{ls.phonetic_first}" />
+					<f:param name="nick" value="#{ls.nick_name}" />
+					<f:param name="company" value="#{ls.company}" />
+					<f:param name="job" value="#{ls.job_title}" />
+					<f:param name="notes" value="#{ls.notes}" />
+					<f:param name="file" value="#{ls.file_as}" />
+					<f:param name="birth" value="#{ls.birthday}" />
+				</h:commandButton>
+			</h:column>
+
+		</h:dataTable>
+
+	</h:form>
+</h:body>
+</html>

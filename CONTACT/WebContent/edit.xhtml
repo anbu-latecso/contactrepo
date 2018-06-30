@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:p="http://primefaces.org/ui">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Edit Contact</title>
+</h:head>
+<h:body>
+<h:form>
+	<h3>Edit Contact</h3>
+	<h:panelGrid columns="2" >
+	
+	<h:outputText value="Id"></h:outputText>
+   	<h:inputText value="#{user.editId}"/>
+   	
+	<h:outputText value="Name:"/>
+	<h:inputText value="#{user.name}"/>
+	
+	<h:outputText value="Nick Name:"/>
+	<h:inputText value="#{user.nick_name}"/>
+	
+	<h:outputText value="Phonetic Last:"/>
+	<h:inputText value="#{user.phonetic_last}"/>
+	
+	<h:outputText value="Phonetic First:"/>
+	<h:inputText value="#{user.phonetic_first}"/>
+	
+	<h:outputText value="File as:"/>
+	<h:inputText value="#{user.file_as}"/>
+	
+	<h:outputText value="Company:"/>
+	<h:inputText value="#{user.company}"/>
+	
+	<h:outputText value="Job Title:"/>
+	<h:inputText value="#{user.job_title}"/>
+	
+	<h:outputText value="BirthDay:"/>
+	<h:inputText value="#{user.birthday}"/>
+	
+	<h:outputText value="Notes:"/>
+	<h:inputText value="#{user.notes}"/>
+	
+	</h:panelGrid>
+	<h:commandButton value="Update" action="#{user.updateContacts(user)}"/>
+</h:form>
+</h:body>
+</html>

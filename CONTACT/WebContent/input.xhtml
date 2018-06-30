@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Contacts</title>
+</h:head>
+<h:body>
+	<h:form>
+		<h3>Create Contact</h3>
+		<h:panelGrid columns="2" callpadding="10" cellspacing="10">
+			<h:outputText value="Name:" />
+			<h:inputText value="#{user.name}" />
+
+			<h:outputText value="Nick Name:" />
+			<h:inputText value="#{user.nick_name}" />
+
+			<h:outputText value="Phonetic Last:" />
+			<h:inputText value="#{user.phonetic_last}" />
+
+			<h:outputText value="Phonetic First:" />
+			<h:inputText value="#{user.phonetic_first}" />
+
+			<h:outputText value="File as:" />
+			<h:inputText value="#{user.file_as}" />
+
+			<h:outputText value="Company:" />
+			<h:inputText value="#{user.company}" />
+
+			<h:outputText value="Job Title:" />
+			<h:inputText value="#{user.job_title}" />
+
+			<h:outputText value="BirthDay:" />
+			<h:inputText value="#{user.birthday}" />
+
+			<h:outputText value="Notes:" />
+			<h:inputText value="#{user.notes}" />
+		</h:panelGrid>
+
+		<h:panelGrid columns="6">
+			<h:dataTable id="dataTable" value="#{contact.addrs}" var="add">
+				<h:column>
+					<h:outputText value="Address:" />
+					<h:inputText value="#{user.address}" />
+
+					<h:outputText value="Label" />
+					<h:selectOneMenu value="#{user.a_label}">
+						<f:selectItem itemLabel="Select.." itemValue=""
+							noSelectionOption="true" />
+						<f:selectItem itemLabel="HOME" itemValue="Home" />
+						<f:selectItem itemLabel="WORK" itemValue="Work" />
+						<f:selectItem itemLabel="OTHER" itemValue="Other" />
+					</h:selectOneMenu>
+					<h:commandButton value="REMOVE">
+						<p:ajax listener="#{contact.onButtonRemoveAddress(add)}"
+							update="@form" immediate="true"/>
+					</h:commandButton>
+				</h:column>
+			</h:dataTable>
+
+			<h:commandButton value="ADD">
+				<p:ajax listener="#{contact.onButtonAddAddress}"
+					update="dataTable" process="@form"/>
+			</h:commandButton>
+		</h:panelGrid>
+
+		  <h:panelGrid columns="6">
+			<h:dataTable id="dataTable1" value="#{contact.email}" var="em">
+				<h:column>
+					<h:outputText value="Email:" />
+					<h:inputText value="#{user.email}" />
+
+					<h:outputText value="Label" />
+					<h:selectOneMenu value="#{user.email_label}">
+						<f:selectItem itemLabel="Select.." itemValue=""
+							noSelectionOption="true" />
+						<f:selectItem itemLabel="HOME" itemValue="Home" />
+						<f:selectItem itemLabel="WORK" itemValue="Work" />
+						<f:selectItem itemLabel="OTHER" itemValue="Other" />
+					</h:selectOneMenu>
+					<h:commandButton value="REMOVE">
+						<p:ajax listener="#{contact.onButtonRemoveEmail(em)}"
+							update="@form" /> 
+					</h:commandButton>
+				</h:column>
+			</h:dataTable>
+
+			<h:commandButton value="ADD">
+				<p:ajax listener="#{contact.onButtonAddEmail}"
+					update="dataTable1" />
+			</h:commandButton>
+		</h:panelGrid>
+
+		<h:panelGrid columns="6">
+			<h:dataTable id="dataTable2" value="#{contact.phone}" var="ph">
+				<h:column>
+					<h:outputText value="Phone:" />
+					<h:inputText value="#{user.phone}" />
+
+					<h:outputText value="Label" />
+					<h:selectOneMenu value="#{user.p_label}">
+						<f:selectItem itemLabel="Select.." itemValue=""
+							noSelectionOption="true" />
+						<f:selectItem itemLabel="HOME" itemValue="Home" />
+						<f:selectItem itemLabel="WORK" itemValue="Work" />
+						<f:selectItem itemLabel="MOBILE" itemValue="Mobile" />
+						<f:selectItem itemLabel="GOOGLE VOICE" itemValue="Google Voice" />
+						<f:selectItem itemLabel="PAGER" itemValue="Pager" />
+						<f:selectItem itemLabel="OTHER" itemValue="Other" />
+					</h:selectOneMenu>
+					<h:commandButton value="REMOVE">
+						<p:ajax listener="#{contact.onButtonRemovePhone(ph)}"
+							update="@form" />
+					</h:commandButton>
+				</h:column>
+			</h:dataTable>
+
+			<h:commandButton value="ADD">
+				<p:ajax listener="#{contact.onButtonAddPhone}"
+					update="dataTable2" />
+			</h:commandButton>
+		</h:panelGrid>
+
+		<h:panelGrid columns="6">
+			<h:dataTable id="dataTable3" value="#{contact.event}" var="ev">
+				<h:column>
+					<h:outputText value="Event:" />
+					<h:inputText value="#{user.event}" />
+
+					<h:outputText value="Label" />
+					<h:selectOneMenu value="#{user.event_label}">
+						<f:selectItem itemLabel="Select.." itemValue=""
+							noSelectionOption="true" />
+						<f:selectItem itemLabel="ANNIVERSARY" itemValue="Anniversary" />
+						<f:selectItem itemLabel="OTHER" itemValue="Other" />
+					</h:selectOneMenu>
+					<h:commandButton value="REMOVE">
+						<p:ajax listener="#{contact.onButtonRemoveEvent(ev)}"
+							update="@form" />
+					</h:commandButton>
+				</h:column>
+			</h:dataTable>
+
+			<h:commandButton value="ADD">
+				<p:ajax listener="#{contact.onButtonAddEvent}"
+					update="dataTable3" />
+			</h:commandButton>
+		</h:panelGrid>
+
+		<h:panelGrid columns="6">
+			<h:dataTable id="dataTable4" value="#{contact.web}" var="w">
+				<h:column>
+					<h:outputText value="Website:" />
+					<h:inputText value="#{user.website}" />
+
+					<h:outputText value="Label" />
+					<h:selectOneMenu value="#{user.w_label}">
+						<f:selectItem itemLabel="Select.." itemValue=""
+							noSelectionOption="true" />
+						<f:selectItem itemLabel="PROFILE" itemValue="Profile" />
+						<f:selectItem itemLabel="BLOG" itemValue="Blog" />
+						<f:selectItem itemLabel="HOMEPAGE" itemValue="HomePage" />
+						<f:selectItem itemLabel="WORK" itemValue="Work" />
+					</h:selectOneMenu>
+					<h:commandButton value="REMOVE">
+						<p:ajax listener="#{contact.onButtonRemoveWeb(w)}"
+							update="@form" />
+					</h:commandButton>
+				</h:column>
+			</h:dataTable>
+
+			<h:commandButton value="ADD">
+				<p:ajax listener="#{contact.onButtonAddWeb}"
+					update="dataTable4" />
+			</h:commandButton>
+		</h:panelGrid>
+
+		<h:panelGrid columns="6">
+			<h:dataTable id="dataTable5" value="#{contact.rel}" var="re">
+				<h:column>
+					<h:outputText value="Relation Ship:" />
+					<h:inputText value="#{user.relationship}" />
+
+					<h:outputText value="Label" />
+					<h:selectOneMenu value="#{user.r_label}">
+						<f:selectItem itemLabel="Select.." itemValue=""
+							noSelectionOption="true" />
+						<f:selectItem itemLabel="SPOUSE" itemValue="Spouse" />
+						<f:selectItem itemLabel="CHILD" itemValue="Child" />
+						<f:selectItem itemLabel="FATHER" itemValue="Father" />
+						<f:selectItem itemLabel="MOTHER" itemValue="Mother" />
+						<f:selectItem itemLabel="PARENT" itemValue="Parent" />
+						<f:selectItem itemLabel="FRIEND" itemValue="Friend" />
+						<f:selectItem itemLabel="SISTER" itemValue="Sister" />
+						<f:selectItem itemLabel="BROTHER" itemValue="Brother" />
+						<f:selectItem itemLabel="MANAGER" itemValue="Manager" />
+						<f:selectItem itemLabel="RELATIVE" itemValue="Relative" />
+						<f:selectItem itemLabel="ASSISTANCE" itemValue="Assistance" />
+						<f:selectItem itemLabel="REFERENCE" itemValue="Reference" />
+						<f:selectItem itemLabel="PARTNER" itemValue="Partner" />
+						<f:selectItem itemLabel="DOMESTIC PARTNER"
+							itemValue="Domestic Partner" />
+					</h:selectOneMenu>
+					<h:commandButton value="REMOVE">
+						<p:ajax listener="#{contact.onButtonRemoveRelation(re)}"
+							update="@form" />
+					</h:commandButton>
+				</h:column>
+			</h:dataTable>
+
+			<h:commandButton value="ADD">
+				<p:ajax listener="#{contact.onButtonAddRelation}"
+					update="dataTable5" />
+			</h:commandButton>
+		</h:panelGrid>
+
+		<h:panelGrid columns="6">
+			<h:dataTable id="dataTable6" value="#{contact.chat}" var="ch">
+				<h:column>
+					<h:outputText value="Chat:" />
+					<h:inputText value="#{user.chat}" />
+
+					<h:outputText value="Label" />
+					<h:selectOneMenu value="#{user.c_label}">
+						<f:selectItem itemLabel="Select.." itemValue=""
+							noSelectionOption="true" />
+						<f:selectItem itemLabel="GOOGLE TALK" itemValue="Google Talk" />
+						<f:selectItem itemLabel="YAHOO" itemValue="Yahoo" />
+						<f:selectItem itemLabel="AIM" itemValue="AIM" />
+						<f:selectItem itemLabel="SKYPE" itemValue="Skype" />
+						<f:selectItem itemLabel="QQ" itemValue="QQ" />
+					</h:selectOneMenu>
+					<h:commandButton value="REMOVE">
+						<p:ajax listener="#{contact.onButtonRemoveChat(ch)}"
+							update="@form" />
+					</h:commandButton>
+				</h:column>
+			</h:dataTable>
+
+			<h:commandButton value="ADD">
+				<p:ajax listener="#{contact.onButtonAddChat}"
+					update="dataTable6" />
+			</h:commandButton>
+		</h:panelGrid>
+
+		<h:panelGrid columns="6">
+			<h:dataTable id="dataTable7" value="#{contact.net}" var="n">
+				<h:column>
+					<h:outputText value="Internet Call:" />
+					<h:inputText value="#{user.internet_call}" />
+
+					<h:outputText value="Label" />
+					<h:selectOneMenu value="#{user.ic_label}">
+						<f:selectItem itemLabel="Select.." itemValue=""
+							noSelectionOption="true" />
+						<f:selectItem itemLabel="HOME" itemValue="Home" />
+						<f:selectItem itemLabel="WORK" itemValue="Work" />
+						<f:selectItem itemLabel="OTHER" itemValue="Other" />
+					</h:selectOneMenu>
+					<h:commandButton value="REMOVE">
+						<p:ajax listener="#{contact.onButtonRemoveNet(n)}"
+							update="@form" />
+					</h:commandButton>
+				</h:column>
+			</h:dataTable>
+
+			<h:commandButton value="ADD">
+				<p:ajax listener="#{contact.onButtonAddNet}"
+					update="dataTable7" />
+			</h:commandButton>
+		</h:panelGrid>
+
+		<h:panelGrid columns="6">
+			<h:dataTable id="dataTable8" value="#{contact.custom}" var="cus">
+				<h:column>
+					<h:outputText value="Custom Field:" />
+					<h:inputText value="#{user.custom_field}" />
+
+					<h:outputText value="Label:" />
+					<h:inputText value="#{user.cf_label}" />
+					<h:commandButton value="REMOVE">
+						<p:ajax listener="#{contact.onButtonRemoveCustom(cus)}"
+							update="@form" />
+					</h:commandButton>
+				</h:column>
+			</h:dataTable>
+
+			<h:commandButton value="ADD">
+				<p:ajax listener="#{contact.onButtonAddCustom}"
+					update="dataTable8" />
+			</h:commandButton>
+		</h:panelGrid>
+
+		<center>
+			<h:commandButton value="SAVE" action="#{user.add(user)}" />
+			<h:commandButton value="CANCEL" type="reset" />
+		</center>
+
+	</h:form>
+</h:body>
+</html>
